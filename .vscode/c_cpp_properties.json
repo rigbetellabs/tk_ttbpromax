@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/shubhu/ros2_ws/install/unity_robotics_demo_msgs/include/**",
+        "/home/shubhu/ros2_ws/install/differential/include/**",
+        "/opt/ros/galactic/include/**",
+        "/home/shubhu/ros2_ws/src/differential/include/**",
+        "/home/shubhu/ros2_ws/src/fullscopelogistics-foxy-devel/mav3k_description/include/**",
+        "/home/shubhu/ros2_ws/src/tk_bot_description/include/**",
+        "/home/shubhu/ros2_ws/src/tk_pkg/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

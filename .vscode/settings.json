@@ -1,0 +1,30 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/shubhu/ros2_ws/install/unity_robotics_demo_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/unity_robotics_demo/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebotpromax_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebotpromax_control/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebot_control/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tk_pkg/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tk_bot_description/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/eic_bot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/differential/lib/python3.8/site-packages",
+        "/opt/ros/galactic/lib/python3.8/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/shubhu/ros2_ws/install/unity_robotics_demo_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/unity_robotics_demo/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebotpromax_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebotpromax_control/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tortoisebot_control/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tk_pkg/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/tk_bot_description/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/eic_bot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/differential/lib/python3.8/site-packages",
+        "/opt/ros/galactic/lib/python3.8/site-packages"
+    ]
+}
