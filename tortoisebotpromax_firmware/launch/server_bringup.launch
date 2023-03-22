@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+
+
+	
+	<!-- Start Google Cartographer node with custom configuration file-->
+	<node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args=" 
+		-configuration_directory $(find tortoisebotpromax_firmware)/config 
+		-configuration_basename lidar.lua" 
+	      output="screen">
+	</node>
+
+	
+	
+	<node name="odom_publisher" pkg="tortoisebotpromax_firmware" type="odom_pub.py" output="screen"/> 
+ 
+	<!-- <node pkg="tf2_ros" type="static_transform_publisher" name="map"
+        args="0 0 0 0 0 0 1 map base_link"/> -->
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+
+   <include file="$(find tortoisebotpromax_firmware)/launch/bringup.launch" />
+   <include file="$(find tortoisebotpromax_description)/launch/joy.launch" />
+   <include file="$(find tortoisebotpromax_firmware)/launch/server_bringup.launch" />
+   <include file="$(find tortoisebotpromax_navigation)/launch/tortoisebotpromax_navigation.launch" />
+
+</launch>

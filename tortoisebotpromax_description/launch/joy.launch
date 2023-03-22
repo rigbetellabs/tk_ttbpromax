@@ -1,0 +1,15 @@
+<launch>
+ <!-- joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="hoverboard_joy_node" >
+ </node>
+
+ <!-- <node pkg="omnibot_firmware" type="cypheus_diff_2.py" name="cepheus_diff" /> -->
+
+ <!-- Axes -->
+  <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="0.5" type="double"/>
+  <param name="scale_angular" value="0.5" type="double"/>
+  <node pkg="tortoisebotpromax_description" type="hoverboard_teleop_joy" name="hoverboard_teleop_joy"/>
+</launch>
+
