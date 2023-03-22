@@ -8,7 +8,7 @@ from launch.conditions import IfCondition
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebotpromax_description').find('tortoisebotpromax_description')
     default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebotpromax.xacro')
-    default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config_new.rviz')
+    default_rviz_config_path = os.path.join(pkg_share, 'rviz/navigation.rviz')
     use_sim_time = LaunchConfiguration('use_sim_time')
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',

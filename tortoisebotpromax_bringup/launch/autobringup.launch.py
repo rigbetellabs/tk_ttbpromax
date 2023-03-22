@@ -79,28 +79,28 @@ def generate_launch_description():
         condition=IfCondition(PythonExpression(['not ', use_sim_time])),
         executable='differential_publisher',
     ),
-#     Node(
-#         package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
-#         condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-#         remappings=[('cloud_in','/camera/depth/color/points'),
-#                     ('/scan','/scan_2')],
-#         parameters=[{
-#             'target_frame': 'mid_ultrasonic_1',
-#             'transform_tolerance': 0.01,
-#             'min_height': 0.0, #height of target frame is considered height 0.0m nad realsense tolerance is 0.05m
-#             'max_height': 1.0,
-#             'angle_min': -1.5708,  # -M_PI/2
-#             'angle_max': 1.5708,  # M_PI/2
-#             'angle_increment': 0.0087,  # M_PI/360.0
-#             'scan_time': 0.3333,
-#             'range_min': 0.3,
-#             'range_max': 4.0,
-#             'use_inf': True,
-#             'inf_epsilon': 1.0
+    # Node(
+    #     package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
+    #     condition=IfCondition(PythonExpression(['not ', use_sim_time])),
+    #     remappings=[('cloud_in','/camera/depth/color/points'),
+    #                 ('/scan','/scan')],
+    #     parameters=[{
+    #         'target_frame': 'mid_ultrasonic_1',
+    #         'transform_tolerance': 0.01,
+    #         'min_height': 0.0, #height of target frame is considered height 0.0m nad realsense tolerance is 0.05m
+    #         'max_height': 1.0,
+    #         'angle_min': -1.5708,  # -M_PI/2
+    #         'angle_max': 1.5708,  # M_PI/2
+    #         'angle_increment': 0.0087,  # M_PI/360.0
+    #         'scan_time': 0.3333,
+    #         'range_min': 0.3,
+    #         'range_max': 4.0,
+    #         'use_inf': True,
+    #         'inf_epsilon': 1.0
 
-#         }],
-#         name='pointcloud_to_laserscan'
-#     ),
+    #     }],
+    #     name='pointcloud_to_laserscan'
+    # ),
 
     # Node(
     #     package='tortoisebotpromax_firmware',

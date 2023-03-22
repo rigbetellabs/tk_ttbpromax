@@ -1,64 +1,42 @@
-import launch
-from launch.substitutions import Command, LaunchConfiguration
-import launch_ros
-from launch_ros.substitutions import FindPackageShare
-from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument
-from launch.conditions import IfCondition
 import os
-from launch_ros.descriptions import ParameterValue
+import launch
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable,IncludeLaunchDescription
+from launch_ros.actions import Node
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.conditions import IfCondition
 
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebotpromax_description').find('tortoisebotpromax_description')
-    default_model_path = os.path.join(pkg_share, 'urdf/tortoisebotpromax.xacro')
-    default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf.rviz')
-    world_path=os.path.join(pkg_share, 'worlds/room2.sdf'),
-    sdf_path=os.path.join(pkg_share, 'urdf/tortoisebotpromax', 'model.sdf'),
-    use_sim_time = LaunchConfiguration('use_sim_time')
-    robot_state_publisher_node = launch_ros.actions.Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time},{'robot_description': ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),value_type=str)}]
-    )
-    joint_state_publisher_node = launch_ros.actions.Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-        parameters= [{'use_sim_time': use_sim_time}],
-    )
-    rviz_node = launch_ros.actions.Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', LaunchConfiguration('rvizconfig')],
-        parameters= [{'use_sim_time': use_sim_time}],
+  rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebotpromax_description'), 'launch')
+  gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebotpromax_gazebo'), 'launch')
+  rvizconfig=os.path.join(get_package_share_directory('tortoisebotpromax_description'), 'rviz/sensors_display.rviz')
 
-    )
-    spawn_entity = launch_ros.actions.Node(
-    condition= IfCondition(use_sim_time),
-    package='gazebo_ros',
-    executable='spawn_entity.py',
-    arguments=['-entity', 'tortoisebotpromax', '-topic', 'robot_description'],
-    parameters= [{'use_sim_time': use_sim_time}],
-    output='screen'
-    )
+  use_sim_time=LaunchConfiguration('use_sim_time')
+  rviz_launch_cmd=IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(rviz_launch_dir, 'rviz.launch.py')),
+            launch_arguments={'use_sim_time':use_sim_time, 'rvizconfig':rvizconfig}.items())
 
-    return launch.LaunchDescription([
-        launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
-                                    description='Flag to enable use_sim_time'),
-        launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                            description='Absolute path to robot urdf file'),
-        launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
-                                            description='Absolute path to rviz config file'),
-        launch.actions.ExecuteProcess(condition= IfCondition(use_sim_time),cmd=['gazebo', '--verbose', '-s', 
-                                            'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so',world_path], 
-                                            output='screen'),
+  gazebo_launch_cmd=IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(gazebo_launch_dir, 'gazebo.launch.py')),
+            condition=IfCondition(use_sim_time),
+            launch_arguments={'use_sim_time':use_sim_time}.items())
 
 
-        joint_state_publisher_node,
-        robot_state_publisher_node,
-        spawn_entity,
-        rviz_node,
-    ])
-    
+  return LaunchDescription([
+
+    SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
+    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
+                                            description='Flag to enable use_sim_time'),
+
+
+    rviz_launch_cmd,
+    gazebo_launch_cmd,
+
+
+
+  ]
+)

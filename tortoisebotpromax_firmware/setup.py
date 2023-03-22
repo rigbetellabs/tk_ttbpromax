@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'differential_publisher = tortoisebotpromax_firmware.differential_publisher:main',
-            'ticks_to_odom = tortoisebotpromax_firmware.ticks_to_odom:main'
+            'ticks_to_odom = tortoisebotpromax_firmware.ticks_to_odom:main',
+            'differential_array_pub = tortoisebotpromax_firmware.differential_array_pub:main',
         ],
     },
 )

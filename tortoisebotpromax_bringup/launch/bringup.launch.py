@@ -38,10 +38,10 @@ def generate_launch_description():
   return LaunchDescription([
     launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
                                             description='Flag to enable use_sim_time'),
-    Node(
-        package='tortoisebotpromax_firmware',
-        executable='differential_publisher',
-    ),
+    # Node(
+    #     package='tortoisebotpromax_firmware',
+    #     executable='differential_publisher',
+    # ),
     # Node(
     #     package='tortoisebotpromax_firmware',
     #     executable='odom_to_ticks',
@@ -60,9 +60,9 @@ def generate_launch_description():
         package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
         condition=IfCondition(PythonExpression(['not ', use_sim_time])),
         remappings=[('cloud_in','/camera/depth/color/points'),
-                    ('/scan','/scan')],
+                    ('/scan','/scan_2')],
         parameters=[{
-            'target_frame': 'mid_ultrasonic_1',
+            'target_frame': 'camera_link',
             'transform_tolerance': 0.01,
             'min_height': 0.0, #height of target frame is considered height 0.0m nad realsense tolerance is 0.05m
             'max_height': 1.0,
@@ -78,7 +78,7 @@ def generate_launch_description():
         }],
         name='pointcloud_to_laserscan'
     ),
-    rviz_launch_cmd, 
+    # rviz_launch_cmd, 
     # ydlidar_launch_cmd,
 
   ]
