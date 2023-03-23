@@ -145,6 +145,14 @@
     pinMode (right_pwm_pin, OUTPUT);
     pinMode (right_dir_pin, OUTPUT);
 
+    pinMode(rf_en_a, INPUT);
+    pinMode(rf_en_b, INPUT);
+
+    pinMode(lf_en_a, INPUT_PULLUP);
+    pinMode(lf_en_b, INPUT_PULLUP);
+
+
+
 
   }
 

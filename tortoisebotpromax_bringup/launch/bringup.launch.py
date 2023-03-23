@@ -38,10 +38,10 @@ def generate_launch_description():
   return LaunchDescription([
     launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
                                             description='Flag to enable use_sim_time'),
-    # Node(
-    #     package='tortoisebotpromax_firmware',
-    #     executable='differential_publisher',
-    # ),
+    Node(
+        package='tortoisebotpromax_firmware',
+        executable='differential_publisher',
+    ),
     # Node(
     #     package='tortoisebotpromax_firmware',
     #     executable='odom_to_ticks',
@@ -60,7 +60,7 @@ def generate_launch_description():
         package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
         condition=IfCondition(PythonExpression(['not ', use_sim_time])),
         remappings=[('cloud_in','/camera/depth/color/points'),
-                    ('/scan','/scan_2')],
+                    ('/scan','/scan')],
         parameters=[{
             'target_frame': 'camera_link',
             'transform_tolerance': 0.01,
